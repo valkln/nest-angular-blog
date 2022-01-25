@@ -1,1 +1,34 @@
-<p>auth works!</p>
+<form [formGroup]="form" (ngSubmit)="handleSubmit()">
+  <h2>Login</h2>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Login</mat-label>
+      <input matInput required formControlName="login" />
+      <mat-error *ngIf="form.get('login').touched && form.get('login').invalid">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput required formControlName="password" />
+      <mat-error
+        *ngIf="form.get('password').touched && form.get('password').invalid"
+      >
+        This field is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="actions">
+    <button type="reset" mat-raised-button color="accent">Reset</button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>
